@@ -55,3 +55,46 @@ const yAxis = {
 // initRawComponent returns a cleanup function that removes all event listeners.
 // Call it if you ever need to tear down the component (e.g. SPA navigation).
 const _cleanup = initRawComponent(graph, scroll, zoom, values, colors, xAxis, yAxis);
+
+// ── 4. Resizable left panel ───────────────────────────────────────────────────
+// Demonstrates that the graph adapts to its container's size: the library's
+// internal ResizeObserver picks up the new --left-width automatically.
+initLeftPanelResize('left-resizer-id');
+
+function initLeftPanelResize(resizerId, minPercent = 10, maxPercent = 70) {
+    const resizer = document.getElementById(resizerId);
+    let dragging = false;
+    let rafId = null;
+
+    resizer.addEventListener('mousedown', handleMouseDown);
+
+    function handleMouseDown(e) {
+        e.preventDefault();
+        dragging = true;
+        resizer.classList.add('active');
+        document.body.style.userSelect = 'none';
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    }
+
+    function handleMouseMove(e) {
+        if (!dragging) return;
+
+        const percent = (e.clientX / window.innerWidth) * 100;
+        const clampedPercent = Math.min(Math.max(percent, minPercent), maxPercent);
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+            rafId = null;
+            document.documentElement.style.setProperty('--left-width', clampedPercent + '%');
+        });
+    }
+
+    function handleMouseUp() {
+        dragging = false;
+        resizer.classList.remove('active');
+        document.body.style.userSelect = '';
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+    }
+}

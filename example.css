@@ -31,6 +31,8 @@
     --x-axis-height: 18px;
     --graph-height:  50vh;
     --scroll-height: 12px;
+    --left-width: 20%;
+    --left-resizer-width: 6px;
 }
 
 html, body {
@@ -45,10 +47,37 @@ html, body {
     overflow: hidden;
 }
 
+/* Resizable left panel — demonstrates the graph adapting to container resizes */
+.left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--left-width);
+    background: var(--axis-bg);
+}
+
+.left-resizer {
+    position: absolute;
+    left: calc(var(--left-width) - var(--left-resizer-width) / 2);
+    top: 0;
+    bottom: 0;
+    width: var(--left-resizer-width);
+    background-color: rgb(80, 80, 80);
+    cursor: col-resize;
+    z-index: 10;
+    touch-action: none;
+}
+
+.left-resizer:hover,
+.left-resizer.active {
+    background-color: rgb(120, 160, 200);
+}
+
 /* Zoom +/− buttons — above and to the right of the Y-axis column */
 .zoom-controls {
     position: absolute;
-    left: var(--y-axis-width);
+    left: calc(var(--left-width) + var(--y-axis-width));
     top: 0;
     height: var(--zoom-height);
     display: flex;
@@ -72,7 +101,7 @@ html, body {
 /* X-axis time labels — thin strip between zoom buttons and graph */
 .x-axis-container {
     position: absolute;
-    left: var(--y-axis-width);
+    left: calc(var(--left-width) + var(--y-axis-width));
     top: var(--zoom-height);
     right: 0;
     height: var(--x-axis-height);
@@ -87,7 +116,7 @@ html, body {
 /* Y-axis min/max labels — narrow column left of the graph */
 .y-axis-container {
     position: absolute;
-    left: 0;
+    left: var(--left-width);
     top: calc(var(--zoom-height) + var(--x-axis-height));
     width: var(--y-axis-width);
     height: var(--graph-height);
@@ -97,7 +126,7 @@ html, body {
 /* Main graph area — the library sizes the canvas to match this container */
 .graph-container {
     position: absolute;
-    left: var(--y-axis-width);
+    left: calc(var(--left-width) + var(--y-axis-width));
     top: calc(var(--zoom-height) + var(--x-axis-height));
     right: 0;
     height: var(--graph-height);
@@ -111,7 +140,7 @@ html, body {
 /* Horizontal scroll bar — thin strip below the graph */
 .scroll-container {
     position: absolute;
-    left: var(--y-axis-width);
+    left: calc(var(--left-width) + var(--y-axis-width));
     top: calc(var(--zoom-height) + var(--x-axis-height) + var(--graph-height));
     right: 0;
     height: var(--scroll-height);
