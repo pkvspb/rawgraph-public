@@ -63,7 +63,7 @@ html, body {
     top: 0;
     bottom: 0;
     width: var(--left-resizer-width);
-    background-color: rgb(80, 80, 80);
+    background-color: rgb(100, 100, 100);
     cursor: col-resize;
     z-index: 10;
     touch-action: none;
@@ -90,6 +90,29 @@ html, body {
     width: 28px;
     height: 28px;
     font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    border: 1px solid #888;
+    border-radius: 4px;
+    background: var(--axis-bg);
+    color: var(--text);
+}
+
+/* Theme toggle — top-right corner */
+.theme-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: var(--zoom-height);
+    display: flex;
+    align-items: center;
+    padding-right: 4px;
+}
+
+.theme-controls button {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
     line-height: 1;
     cursor: pointer;
     border: 1px solid #888;
