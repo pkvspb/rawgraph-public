@@ -1,5 +1,5 @@
-import { initRawComponent } from './lib/rawcomponent.js';
-import { getRawValuesAsync } from './api/mockRawValues.js';
+import { initRawComponent } from '../../lib/rawcomponent.js';
+import { getRawValuesAsync } from '../../api/mockRawValues.js';
 
 // ── 1. Data ──────────────────────────────────────────────────────────────────
 // Real raw fluorescence integers extracted from a 1_1_A3.srd instrument file.

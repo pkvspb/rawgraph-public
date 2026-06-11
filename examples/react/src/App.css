@@ -1,6 +1,7 @@
 /* ── Theme ──────────────────────────────────────────────────────────────────
    Set data-applied-mode="light" or "dark" on <html> from JavaScript.
-   The library reads --scroll-back and --scroll-port for the scrollbar colors.
+   RawGraphComponent reads --raw-channel-1..8, --text, --scroll-back and
+   --scroll-port via getComputedStyle for the chart colors.
    ─────────────────────────────────────────────────────────────────────────── */
 :root[data-applied-mode="light"] {
     color-scheme: light;
@@ -10,6 +11,17 @@
     --axis-bg:     #dde3e0;
     --scroll-back: lightgray;
     --scroll-port: darkgray;
+    --left-resizer:        rgb(190, 190, 190);
+    --left-resizer-active: darkgray;
+
+    --raw-channel-1: green;
+    --raw-channel-2: blue;
+    --raw-channel-3: red;
+    --raw-channel-4: goldenrod;
+    --raw-channel-5: purple;
+    --raw-channel-6: teal;
+    --raw-channel-7: darkorange;
+    --raw-channel-8: olivedrab;
 }
 
 :root[data-applied-mode="dark"] {
@@ -20,6 +32,17 @@
     --axis-bg:     #434846;
     --scroll-back: dimgray;
     --scroll-port: darkgray;
+    --left-resizer:        rgb(80, 80, 80);
+    --left-resizer-active: rgb(110, 110, 110);
+
+    --raw-channel-1: #4fc36a;
+    --raw-channel-2: #5b9bd5;
+    --raw-channel-3: #e06060;
+    --raw-channel-4: #d4a020;
+    --raw-channel-5: #a07ad0;
+    --raw-channel-6: #40c8c8;
+    --raw-channel-7: #e07840;
+    --raw-channel-8: #90b060;
 }
 
 /* ── Layout constants ───────────────────────────────────────────────────────
@@ -63,7 +86,7 @@ html, body {
     top: 0;
     bottom: 0;
     width: var(--left-resizer-width);
-    background-color: rgb(100, 100, 100);
+    background-color: var(--left-resizer);
     cursor: col-resize;
     z-index: 10;
     touch-action: none;
@@ -71,7 +94,7 @@ html, body {
 
 .left-resizer:hover,
 .left-resizer.active {
-    background-color: rgb(120, 160, 200);
+    background-color: var(--left-resizer-active);
 }
 
 /* Zoom +/− buttons — above and to the right of the Y-axis column */
