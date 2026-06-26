@@ -45,7 +45,7 @@ function start(isDark) {
         rawXAxisId:          'raw-x-axis-id',
         rawXAxisContainerId: 'raw-x-axis-container-id',
         rawXAxisFontSize:    10,
-        rawXAxisFontName:    'Verdana',
+        rawXAxisFontName:    '"Fira Code", monospace',
         rawXAxisFontColor:   isDark ? 'white' : 'black',
     };
 
@@ -54,7 +54,7 @@ function start(isDark) {
         rawYAxisMaxId:     'raw-y-axis-max-id',
         rawYAxisFontSize:  11,
         rawYAxisFontColor: isDark ? 'white' : 'black',
-        rawYAxisFontName:  'Verdana',
+        rawYAxisFontName:  '"Fira Code", monospace',
     };
 
     cleanup = initRawComponent(graph, scroll, zoom, values, colors, xAxis, yAxis);

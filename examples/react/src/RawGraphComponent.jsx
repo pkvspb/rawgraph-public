@@ -30,14 +30,14 @@ export default function RawGraphComponent({ values, theme }) {
         const rawXAxisId = 'raw-x-axis-id';
         const rawXAxisContainerId = 'raw-x-axis-container-id';
         const rawXAxisFontSize = 10;
-        const rawXAxisFontName = 'Verdana';
+        const rawXAxisFontName = '"Fira Code", monospace';
         const rawXAxisFontColor = getStyledColor('--text');
 
         const rawYAxisMinId = 'raw-y-axis-min-id';
         const rawYAxisMaxId = 'raw-y-axis-max-id';
         const rawYAxisFontSize = 11;
         const rawYAxisFontColor = getStyledColor('--text');
-        const rawYAxisFontName = 'Verdana';
+        const rawYAxisFontName = '"Fira Code", monospace';
 
         const graph = { rawGraphId, rawGraphContainerId };
         const scroll = { rawScrollId, rawScrollContainerId, rawScrollBackground, rawScrollPortColor };
